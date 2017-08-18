@@ -19,6 +19,7 @@ services:
       - .:/code
     ports:
       - "7050:7050"
+      - "7051:7051"
     depends_on:
       - mongodb
     links:

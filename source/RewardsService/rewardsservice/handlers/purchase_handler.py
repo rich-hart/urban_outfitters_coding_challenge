@@ -12,10 +12,12 @@ class PurchasesHandler(tornado.web.RequestHandler):
         client = MongoClient("mongodb", 27017)
         db = client["Purchases"]
         purchases = list(db.purchases.find({}, {"_id": 0}))
+        self.set_status(200)
         self.write(json.dumps(purchases))
 
     @coroutine
     def post(self):
+#        import ipdb; ipdb.set_trace()
         client = MongoClient("mongodb", 27017)
         db = client["Purchases"]
         purchase = {
@@ -25,10 +27,16 @@ class PurchasesHandler(tornado.web.RequestHandler):
 
         db.purchases.insert_one(purchase)
 
+        self.set_status(201)
+
         purchases = list(db.purchases.find({}, {"_id": 0}))
+
         data = {
             'id': str(purchase['_id']),
             'email_address': purchase['email_address'],
             'order_total': purchase['order_total'],
         }
+
         self.write(json.dumps([data]))
+
+
