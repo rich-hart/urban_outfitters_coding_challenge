@@ -8,7 +8,6 @@ from tornado.gen import coroutine
 class PurchasesHandler(tornado.web.RequestHandler):
 
     def _update_rewards(self, email_address):
-#        import ipdb; ipdb.set_trace()
 
         account = {
             '_id': email_address,
