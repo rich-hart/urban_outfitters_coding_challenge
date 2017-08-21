@@ -5,7 +5,9 @@ from handlers.account_handler import AccountsHandler
 
 url_patterns = [
     (r'/rewards', RewardsHandler),
-    (r'/purchases', PurchasesHandler),
+    (r'/purchases/?'\
+      '([a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+)?'\
+      '/?', PurchasesHandler),
     (r'/accounts/?'\
       '([a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+)?'\
       '/?', AccountsHandler),

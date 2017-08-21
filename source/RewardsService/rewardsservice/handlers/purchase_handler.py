@@ -52,15 +52,19 @@ class PurchasesHandler(tornado.web.RequestHandler):
                  
 
     @coroutine
-    def get(self):
+    def get(self,email_address=None):
         client = MongoClient("mongodb", 27017)
         db = client["Purchases"]
-        purchases = list(db.purchases.find({}, {"_id": 0}))
+        if email_address:
+            key = {'email_address':email_address}
+            purchases = list(db.purchases.find(key, {"_id": 0}))
+        else: 
+            purchases = list(db.purchases.find({}, {"_id": 0}))
         self.set_status(200)
         self.write(json.dumps(purchases))
 
     @coroutine
-    def post(self):
+    def post(self, *args):
         client = MongoClient("mongodb", 27017)
         db = client["Purchases"]
         purchase = {
