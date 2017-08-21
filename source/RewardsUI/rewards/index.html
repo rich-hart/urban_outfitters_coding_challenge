@@ -44,6 +44,8 @@
         </form>
         <table border="1">
             <thead>
+
+
             <tr>
                 <th>Email Address</th>
                 <th>Reward Points</th>
@@ -55,15 +57,17 @@
             </tr>
             </thead>
             <tbody>
+            {% for account in accounts_data %}
                 <tr>
-                    <td>customer01@gmail.com</td>
-                    <td>100</td>
-                    <td>A</td>
-                    <td>5% off purchase</td>
-                    <td>B</td>
-                    <td>10% off purchase</td>
-                    <td>50%</td>
+                    <td>{{ account.email_address }}</td>
+                    <td>{{ account.reward_points }}</td>
+                    <td>{{ account.rewards_tier }}</td>
+                    <td>{{ account.reward_tier_name }}</td>
+                    <td>{{ account.next_rewards_tier }} </td>
+                    <td>{{ account.next_rewards_tier_name }}</td>
+                    <td>{{ account.next_rewards_tier_progress }}%</td>
                 </tr>
+            {% endfor %}
             </tbody>
         </table>
     </div>

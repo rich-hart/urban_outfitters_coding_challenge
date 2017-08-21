@@ -18,6 +18,9 @@ class RewardsView(TemplateView):
         response = requests.get("http://rewardsservice:7050/rewards")
         context['rewards_data'] = response.json()
 
+        response = requests.get("http://rewardsservice:7050/accounts")
+        context['accounts_data'] = response.json()
+
         return TemplateResponse(
             request,
             self.template_name,
@@ -29,6 +32,9 @@ class RewardsView(TemplateView):
 
         response = requests.get("http://rewardsservice:7050/rewards")
         context['rewards_data'] = response.json()
+
+        response = requests.get("http://rewardsservice:7050/accounts")
+        context['accounts_data'] = response.json()
 
         data = {
             'email_address' : request.POST.get('email_address'),
