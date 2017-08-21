@@ -10,6 +10,7 @@ services:
       - .:/code
     ports:
       - "8000:8000"
+      - "8001:8001"
     external_links:
       - rewardsservice
     networks:
