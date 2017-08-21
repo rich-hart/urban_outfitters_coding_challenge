@@ -1,11 +1,19 @@
 <html>
+
 <head>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+    html, body, h1, h2, h3, h4, h5, h6 {
+      font-family: "Comic Sans MS", cursive, sans-serif;
+    }
+    </style>
 </head>
 <body>
     <h1>Welcome to the Rewards Dashboard</h1>
-    <div>
-        <h2>Reward Tiers</h2>
-        <table border="1">
+    <div class="w3-card">
+        <h2 class="w3-center">Reward Tiers</h2>
+        <table class="w3-table">
             <tr>
                 <th>Rewards Tier<th>
                 <th>Reward Points</th>
@@ -21,31 +29,34 @@
         </table>
         <hr>
     </div>
-    <div>
-        <h2>Add orders</h2>
-        <form action="/rewards/" method="post">
+    <div class="w3-card">
+
+        <form class="w3-container" action="/rewards/" method="post">
+            <h2 class="w3-center">Add orders</h2>
             {% csrf_token %}
             <label>Enter email address: </label>
-            <input type="text" name="email_address"/>
+            <input class="w3-input w3-border" type="text" name="email_address"/>
 
             <br>
             <label>Enter order total: </label>
-            <input type="text" name="order_total"/>
+            <input class="w3-input w3-border" type="text" name="order_total"/>
 
             <br>
-            <input type="submit" value="Submit Order"/>
+            <input class="w3-button w3-border" type="submit" value="Submit Order"/>
         </form>
         <hr>
     </div>
-    <div>
-        <h2>User Rewards</h2>
-        <form action="/rewards/" method="get">
+    <div class="w3-card">
+
+        <form class="w3-container" ction="/rewards/" method="get">
+            <h2 class="w3-center">User Rewards</h2>
             {% csrf_token %}
             <label>Email address: </label>
-            <input type="text" name="user_email"/>
-            <input type="submit" value="Search"/>
+            <input class="w3-input w3-border" type="text" name="user_email"/>
+            <br>
+            <input class="w3-button w3-border" type="submit" value="Search"/>
         </form>
-        <table border="1">
+        <table class="w3-table">
             <thead>
 
 
