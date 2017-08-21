@@ -12,10 +12,29 @@ class RewardsView(TemplateView):
         self.logger = logger
 
     def get(self, request, *args, **kwargs):
+#        import ipdb; ipdb.set_trace()
         context = self.get_context_data(**kwargs)
 
         response = requests.get("http://rewardsservice:7050/rewards")
         context['rewards_data'] = response.json()
+
+        return TemplateResponse(
+            request,
+            self.template_name,
+            context
+        )
+
+    def post(self, request, *args, **kwargs):
+        context = self.get_context_data(**kwargs)
+
+        response = requests.get("http://rewardsservice:7050/rewards")
+        context['rewards_data'] = response.json()
+
+        data = {
+            'email_address' : request.POST.get('email_address'),
+            'order_total' : float(request.POST.get('order_total')),
+        }
+        response = requests.post("http://rewardsservice:7050/purchases",data)
 
         return TemplateResponse(
             request,
